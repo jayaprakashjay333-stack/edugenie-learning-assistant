@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="Learn with EduGenie: get clear explanations, answers, quizzes, summaries, and personalized learning paths."
+    >
+    <title>EduGenie — your learning companion</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/style.css') }}">
+    <script src="{{ url_for('static', path='/app.js') }}" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="EduGenie home">
+        <span class="brand-mark" aria-hidden="true">E</span>
+        <span>EduGenie</span>
+      </a>
+      <div class="header-actions">
+        <span class="header-note">Hi, {{ user.display_name }}</span>
+        <button id="logout-button" class="text-button" type="button">Sign out</button>
+      </div>
+    </header>
+
+    <main class="page-shell">
+      <section class="intro" aria-labelledby="page-title">
+        <p class="eyebrow">YOUR AI STUDY PARTNER</p>
+        <h1 id="page-title">Make room for the <span>aha!</span> moment.</h1>
+        <p class="intro-copy">
+          Ask a question, untangle a tricky idea, or turn your notes into a plan.
+          Let's learn something new.
+        </p>
+      </section>
+
+      <section class="workspace" aria-label="Learning assistant">
+        <form id="assistant-form" class="assistant-form">
+          <label for="task">What would you like help with?</label>
+          <select id="task" name="task">
+            <option value="explain">Explain a concept</option>
+            <option value="qa">Answer a question</option>
+            <option value="quiz">Generate a quiz</option>
+            <option value="summarize">Summarize text</option>
+            <option value="learn">Build a learning path</option>
+          </select>
+
+          <div id="level-field" class="level-field" hidden>
+            <label for="level">Your current level</label>
+            <select id="level" name="level">
+              <option>Beginner</option>
+              <option>Intermediate</option>
+              <option>Advanced</option>
+            </select>
+          </div>
+
+          <label id="input-label" for="user-input">What would you like to understand?</label>
+          <textarea
+            id="user-input"
+            name="input"
+            rows="6"
+            maxlength="30000"
+            placeholder="For example: How do ocean currents affect climate?"
+            required
+          ></textarea>
+          <div class="form-footer">
+            <span id="input-hint" class="input-hint">A specific topic works best.</span>
+            <button id="submit-button" type="submit">
+              <span id="button-label">Help me learn</span>
+              <span aria-hidden="true">→</span>
+            </button>
+          </div>
+        </form>
+
+        <section id="result-panel" class="result-panel" aria-live="polite" aria-atomic="false" hidden>
+          <div class="result-heading">
+            <span class="result-icon" aria-hidden="true">✦</span>
+            <h2 id="result-title">Your study notes</h2>
+          </div>
+          <p id="status-message" class="status-message" hidden></p>
+          <div id="result-content" class="result-content"></div>
+        </section>
+      </section>
+
+      <section class="feature-row" aria-label="Ways to learn">
+        <div><span aria-hidden="true">✳</span><strong>Understand</strong><small>Clear, beginner-friendly explanations</small></div>
+        <div><span aria-hidden="true">◇</span><strong>Practice</strong><small>Quick quizzes to check your progress</small></div>
+        <div><span aria-hidden="true">↗</span><strong>Grow</strong><small>Learning paths shaped around you</small></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>Curiosity looks good on you.</span>
+      <span>AI can make mistakes — double-check important information.</span>
+    </footer>
+  </body>
+</html>
